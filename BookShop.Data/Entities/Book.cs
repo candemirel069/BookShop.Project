@@ -1,9 +1,5 @@
-﻿
-
-using BookShop.Data.Bases;
-
+﻿using BookShop.Data.Bases;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BookShop.Data.Entities;
 
