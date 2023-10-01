@@ -40,7 +40,7 @@ namespace BookShop.Business.Repositories
         public virtual async Task<TEntity> AddAsync(TEntity entity)
         {
             _dbContext.Add(entity);
-            _dbContext.SaveChanges();
+            await _dbContext.SaveChangesAsync();
             return entity;
         }
 
