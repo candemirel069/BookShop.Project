@@ -9,18 +9,20 @@ namespace BookShop.Business.Repositories
     {
         public BookRepository(BookShopContext context) : base(context) { }
 
-        public BookViewModel? GetBook(int id)
+        public BookListItemViewModel? GetBook(int id)
         {
             var result = _dbContext.Books
                      .Include(it => it.Author)
                      .Include(it => it.Translator)
                      .Include(it => it.Campaign)
-                     .Select(bk => new BookViewModel()
+                     .Include(it => it.Category)
+                     .Select(bk => new BookListItemViewModel()
                      {
                          Id = bk.Id,
                          Name = bk.Name,
                          AuthorName = bk.Author.FullName,
                          TranslatorName = bk.Translator.FullName,
+                         CategoryName = bk.Category.Name,
                          Star = bk.Star,
                          ImageUrl = MyApplicationConfig.ImageBaseUrl + bk.ImageName,
                          ProductPrice = new ProductPrice(bk.Price, bk.Campaign == null ? 0 : bk.Campaign.DiscountRate)
@@ -53,8 +55,9 @@ namespace BookShop.Business.Repositories
                      .FirstOrDefault(x => x.Id == id);
             return result;
         }
-        public List<BookViewModel>? Search(BookSearchModel model)
+        public List<BookListItemViewModel>? Search(BookSearchModel? model)
         {
+            model = model ?? new BookSearchModel();
             var result = from bk in _dbContext.Books
                      .Include(it => it.Author)
                      .Include(it => it.Translator)
@@ -65,11 +68,13 @@ namespace BookShop.Business.Repositories
                                && (!model.CategoryId.HasValue || bk.CategoryId == model.CategoryId)
                                && (!model.PublisherId.HasValue || bk.PublisherId == model.PublisherId)
                          orderby bk.Name
-                         select new BookViewModel()
+                         select new BookListItemViewModel()
                          {
                              Id = bk.Id,
                              Name = bk.Name,
                              AuthorName = bk.Author.FullName,
+                             CampaignName=bk.Campaign.Name,
+                             CategoryName=bk.Category.Name,
                              TranslatorName = bk.Translator.FullName,
                              Star = bk.Star,
                              ImageUrl = MyApplicationConfig.ImageBaseUrl + bk.ImageName,

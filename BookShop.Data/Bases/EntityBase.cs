@@ -21,7 +21,7 @@ namespace BookShop.Data.Bases
 
     public class EntityBase : EntityBase<int>, IEntityBase { }
 
-    public interface INameEntity : IEntityBase
+    public interface INameEntity : IEntityBase 
     {
         string Name { get; set; }
     }

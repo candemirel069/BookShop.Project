@@ -8,6 +8,7 @@ namespace BookShop.Business.Repositories
         public CategoryRepository(BookShopContext context) : base(context)
         {
         }
+
         public override List<Category> GetAll()
         {
             return _dbContext.Set<Category>().OrderBy(x=>x.Name).ToList();

@@ -16,9 +16,9 @@ namespace BookShop.Business.Models
             DiscountRate = discountRate;
         }
 
-        public decimal? Price { get; set; }
+        public decimal? Price { get; set; } = 0;
 
-        public int? DiscountRate { get; set; }
+        public int? DiscountRate { get; set; } = 0;
 
         public decimal DiscountAmount
         {

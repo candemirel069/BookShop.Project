@@ -26,23 +26,7 @@ namespace BookShop.Admin.Controllers
                           Problem("Entity set 'BookShopContext.Translators'  is null.");
         }
 
-        // GET: Translators/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null || _context.Translators == null)
-            {
-                return NotFound();
-            }
-
-            var translator = await _context.Translators
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (translator == null)
-            {
-                return NotFound();
-            }
-
-            return View(translator);
-        }
+       
 
         // GET: Translators/Create
         public IActionResult Create()

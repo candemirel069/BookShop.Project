@@ -16,6 +16,7 @@ public class Book : EntityBase,INameEntity
     public int? PageCount { get; set; }
 
     [Display(Name = "Kategori")]
+    [Required, Range(1, int.MaxValue, ErrorMessage = "Seçiniz")]
     public int CategoryId { get; set; }
     public virtual Category? Category { get; set; }
   
@@ -24,13 +25,17 @@ public class Book : EntityBase,INameEntity
     public virtual Author? Author { get; set; }
 
     [Display(Name = "Çevirmen")]
+
     public int? TranslatorId { get; set; }
     public virtual Translator? Translator { get; set; }
 
     [Display(Name = "Yayıncı")]
+    [Range(1, int.MaxValue, ErrorMessage = "Seçiniz")]
     public int PublisherId { get; set; }
     public virtual Publisher? Publisher { get; set; }
-
+    
+    [ScaffoldColumn(false)]
+    [Range(0,5)]
     public int? Star { get; set; }
     public decimal? Price { get; set; }
 

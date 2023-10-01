@@ -5,8 +5,8 @@ namespace BookShop.Business.Repositories
 {
     public interface IBookRepository : IRepositoryBase<Book>
     {
-        BookViewModel? GetBook(int id);
+        BookListItemViewModel? GetBook(int id);
         BookDetailedViewModel? GetBookDetailed(int id);
-        List<BookViewModel>? Search(BookSearchModel model);
+        List<BookListItemViewModel>? Search(BookSearchModel? model);
     }
 }

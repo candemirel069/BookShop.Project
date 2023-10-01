@@ -26,24 +26,6 @@ namespace BookShop.Admin.Controllers
                           Problem("Entity set 'BookShopContext.Campaigns'  is null.");
         }
 
-        // GET: Campaigns/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null || _context.Campaigns == null)
-            {
-                return NotFound();
-            }
-
-            var campaign = await _context.Campaigns
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (campaign == null)
-            {
-                return NotFound();
-            }
-
-            return View(campaign);
-        }
-
         // GET: Campaigns/Create
         public IActionResult Create()
         {

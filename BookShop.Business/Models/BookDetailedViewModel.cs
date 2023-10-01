@@ -4,6 +4,7 @@
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public string? CampaignName { get; set; }
         public int? PageCount { get; set; }
         public string? PublisherName { get; set; }
         public string? Category { get; set; }

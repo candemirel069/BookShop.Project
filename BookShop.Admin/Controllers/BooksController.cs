@@ -6,65 +6,45 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using BookShop.Data.Entities;
+using BookShop.Business.Repositories;
+using BookShop.Business.Models;
+using BookShop.Business.Services;
 
 namespace BookShop.Admin.Controllers
 {
     public class BooksController : Controller
     {
         private readonly BookShopContext _context;
+        private readonly IBookRepository _bookRepository;
+        private readonly IListService _listService;
 
-        public BooksController(BookShopContext context)
+        public BooksController(BookShopContext context, IBookRepository bookRepository, IListService listService)
         {
             _context = context;
+            _bookRepository = bookRepository;
+            _listService = listService;
         }
+
 
         // GET: Books
-        public async Task<IActionResult> Index()
+        public IActionResult Index(BookSearchModel? model=null)
         {
-            var bookShopContext = _context.Books.Include(b => b.Author).Include(b => b.Campaign).Include(b => b.Category).Include(b => b.Publisher).Include(b => b.Translator);
-            return View(await bookShopContext.ToListAsync());
-        }
-
-        // GET: Books/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null || _context.Books == null)
-            {
-                return NotFound();
-            }
-
-            var book = await _context.Books
-                .Include(b => b.Author)
-                .Include(b => b.Campaign)
-                .Include(b => b.Category)
-                .Include(b => b.Publisher)
-                .Include(b => b.Translator)
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (book == null)
-            {
-                return NotFound();
-            }
-
-            return View(book);
-        }
+            return View(_bookRepository.Search(model));
+        }       
 
         // GET: Books/Create
         public IActionResult Create()
         {
-            ViewData["AuthorId"] = new SelectList(_context.Authors, "Id", "Name");
-            ViewData["CampaignId"] = new SelectList(_context.Campaigns, "Id", "Description");
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name");
-            ViewData["PublisherId"] = new SelectList(_context.Publishers, "Id", "Email");
-            ViewData["TranslatorId"] = new SelectList(_context.Translators, "Id", "Name");
+            ViewData["AuthorId"] = _listService.GetPersonSelectList<Author>();
+            ViewData["TranslatorId"] = _listService.GetPersonSelectList<Translator>();
+            ViewData["CategoryId"] = _listService.GetSelectList<Category>();
+            ViewData["PublisherId"] = _listService.GetSelectList<Publisher>();
             return View();
         }
 
-        // POST: Books/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Name,PageCount,CategoryId,AuthorId,TranslatorId,PublisherId,Star,Price,Id")] Book book)
+        public async Task<IActionResult> Create( Book book)
         {
             if (ModelState.IsValid)
             {
@@ -72,11 +52,10 @@ namespace BookShop.Admin.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["AuthorId"] = new SelectList(_context.Authors, "Id", "Name", book.AuthorId);
-            ViewData["CampaignId"] = new SelectList(_context.Campaigns, "Id", "Description", book.CampaignId);
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name", book.CategoryId);
-            ViewData["PublisherId"] = new SelectList(_context.Publishers, "Id", "Email", book.PublisherId);
-            ViewData["TranslatorId"] = new SelectList(_context.Translators, "Id", "Name", book.TranslatorId);
+            ViewData["AuthorId"] = _listService.GetPersonSelectList<Author>(book.AuthorId);
+            ViewData["TranslatorId"] = _listService.GetPersonSelectList<Translator>(book.TranslatorId);
+            ViewData["CategoryId"] = _listService.GetSelectList<Category>(book.CategoryId);
+            ViewData["PublisherId"] = _listService.GetSelectList<Publisher>(book.PublisherId);
             return View(book);
         }
 
@@ -93,20 +72,16 @@ namespace BookShop.Admin.Controllers
             {
                 return NotFound();
             }
-            ViewData["AuthorId"] = new SelectList(_context.Authors, "Id", "Name", book.AuthorId);
-            ViewData["CampaignId"] = new SelectList(_context.Campaigns, "Id", "Description", book.CampaignId);
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name", book.CategoryId);
-            ViewData["PublisherId"] = new SelectList(_context.Publishers, "Id", "Email", book.PublisherId);
-            ViewData["TranslatorId"] = new SelectList(_context.Translators, "Id", "Name", book.TranslatorId);
+            ViewData["AuthorId"] = _listService.GetPersonSelectList<Author>(book.AuthorId);
+            ViewData["TranslatorId"] = _listService.GetPersonSelectList<Translator>(book.TranslatorId);
+            ViewData["CategoryId"] = _listService.GetSelectList<Category>(book.CategoryId);
+            ViewData["PublisherId"] = _listService.GetSelectList<Publisher>(book.PublisherId);
             return View(book);
         }
 
-        // POST: Books/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Name,PageCount,CategoryId,AuthorId,TranslatorId,PublisherId,Star,Price,Id")] Book book)
+        public async Task<IActionResult> Edit(int id,  Book book)
         {
             if (id != book.Id)
             {
@@ -133,11 +108,11 @@ namespace BookShop.Admin.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["AuthorId"] = new SelectList(_context.Authors, "Id", "Name", book.AuthorId);
-            ViewData["CampaignId"] = new SelectList(_context.Campaigns, "Id", "Description", book.CampaignId);
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name", book.CategoryId);
-            ViewData["PublisherId"] = new SelectList(_context.Publishers, "Id", "Email", book.PublisherId);
-            ViewData["TranslatorId"] = new SelectList(_context.Translators, "Id", "Name", book.TranslatorId);
+            ViewData["AuthorId"] = _listService.GetPersonSelectList<Author>(book.AuthorId);
+            ViewData["TranslatorId"] = _listService.GetPersonSelectList<Translator>(book.TranslatorId);
+            ViewData["CategoryId"] = _listService.GetSelectList<Category>(book.CategoryId);
+            ViewData["PublisherId"] = _listService.GetSelectList<Publisher>(book.PublisherId);
+
             return View(book);
         }
 

@@ -26,23 +26,7 @@ namespace BookShop.Admin.Controllers
                           Problem("Entity set 'BookShopContext.Publishers'  is null.");
         }
 
-        // GET: Publishers/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null || _context.Publishers == null)
-            {
-                return NotFound();
-            }
-
-            var publisher = await _context.Publishers
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (publisher == null)
-            {
-                return NotFound();
-            }
-
-            return View(publisher);
-        }
+       
 
         // GET: Publishers/Create
         public IActionResult Create()

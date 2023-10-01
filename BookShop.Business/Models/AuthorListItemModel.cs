@@ -16,7 +16,7 @@ namespace BookShop.Business.Models
         public int BookCount { get; set; } = 0;
     }
 
-    public class TraslatorListItemModel : PersonListItemModel
+    public class TranslatorListItemModel : PersonListItemModel
     {
         public int BookCount { get; set; } = 0;
     }

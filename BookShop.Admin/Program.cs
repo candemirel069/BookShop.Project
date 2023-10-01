@@ -1,3 +1,5 @@
+using BookShop.Business.Repositories;
+using BookShop.Business.Services;
 using BookShop.Data.Entities;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,8 +16,16 @@ namespace BookShop.Admin
                 options => options.UseSqlServer(constr));
 
             builder.Services.AddControllersWithViews();
+            builder.Services.AddScoped<IListService, ListServices>();
 
-            var app = builder.Build();
+            builder.Services.AddScoped<IBookRepository, BookRepository>();
+            builder.Services.AddScoped<IAuthorRepository, AuthorRepository>();
+            builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+            builder.Services.AddScoped<ITranslatorRepository, TranslatorRepository>();
+            builder.Services.AddScoped<IPublisherRepository, PublisherRepository>();
+            
+
+        var app = builder.Build();
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
