@@ -1,6 +1,7 @@
 using BookShop.Business.Repositories;
 using BookShop.Business.Services;
 using BookShop.Data.Entities;
+using BookShop.Data.Identities;
 using Microsoft.EntityFrameworkCore;
 
 namespace BookShop.Admin
@@ -15,7 +16,11 @@ namespace BookShop.Admin
             builder.Services.AddDbContext<BookShopContext>(
                 options => options.UseSqlServer(constr));
 
+            builder.Services.AddIdentity<AppUser, AppRole>()
+                .AddEntityFrameworkStores<BookShopContext>();
+
             builder.Services.AddControllersWithViews();
+
             builder.Services.AddScoped<IListService, ListServices>();
 
             builder.Services.AddScoped<IBookRepository, BookRepository>();
