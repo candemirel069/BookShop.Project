@@ -33,7 +33,6 @@ namespace BookShop.Business.Services
                 .OrderBy(x => x.Name)
                 .ToList();
 
-            data.Insert(0, new { Id = 0, Name = "-- seçiniz --" });
             var sl = new SelectList(data, "Id", "Name", selectedItem);
             return sl;
         }

@@ -1,4 +1,4 @@
-﻿@model BookShop.Data.Entities.Book
+﻿@model BookDetailedViewModel
 
 @{
     ViewData["Title"] = "Delete";
@@ -24,28 +24,28 @@
             @Html.DisplayFor(model => model.PageCount)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Category)
+            @Html.DisplayNameFor(model => model.CategoryName)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Category.Name)
+            @Html.DisplayFor(model => model.CategoryName)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Author)
+            @Html.DisplayNameFor(model => model.AuthorName)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Author.Name)
+            @Html.DisplayFor(model => model.AuthorName)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Translator)
+            @Html.DisplayNameFor(model => model.TranslatorName)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Translator.Name)
+            @Html.DisplayFor(model => model.TranslatorName)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Publisher)
+            @Html.DisplayNameFor(model => model.PublisherName)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Publisher.Email)
+            @Html.DisplayFor(model => model.PublisherName)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Star)
@@ -54,16 +54,10 @@
             @Html.DisplayFor(model => model.Star)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Price)
+            @Html.DisplayNameFor(model => model.ProductPrice )
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Price)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Campaign)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Campaign.Description)
+            @Html.DisplayFor(model => model.ProductPrice.FinalPrice)
         </dd>
     </dl>
     

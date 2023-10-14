@@ -47,7 +47,7 @@ namespace BookShop.Business.Repositories
                          AuthorName = bk.Author.FullName,
                          TranslatorName = bk.Translator.FullName,
                          PublisherName = bk.Publisher.Name,
-                         Category = bk.Category.Name,
+                         CategoryName = bk.Category.Name,
                          Star = bk.Star,
                          ImageUrl = MyApplicationConfig.ImageBaseUrl + bk.ImageName,
                          ProductPrice = new ProductPrice(bk.Price, bk.Campaign.DiscountRate)
