@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewData["Title"] - BookStore.WebUI</title>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/lib/font-awesome/css/all.min.css" rel="stylesheet" />
+    <link href="~/css/main.css" rel="stylesheet" />
+    <link href="~/css/home.css" rel="stylesheet" />
+    <link href="~/css/star.css" rel="stylesheet" />
+    <link href="~/css/book-items.css" rel="stylesheet" />
+</head>
+
+<body class="text">
+
+    <header class=" ">
+        <img src="/images/main/top-image.png" class="header-rigth-image opacity-75"  alt="BookStore"/>
+        <div class="header-body container ">
+            <img src="/images/main/header_text.png" class="header-rigth-logo" alt="BookStore" />
+        </div>
+    </header> 
+
+    <div class="bg-light border-bottom border-top border-gray  nav-container ">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light container ">
+ 
+            <a class="navbar-brand" href="#"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" asp-controller="Home" asp-action="Index">Ana Sayfa </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Books" asp-action="Index">Kitaplar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Authors" asp-action="Index">Yazarlar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Publishers" asp-action="Index"> Yayıncılar</a>
+                    </li>
+                </ul>
+                <partial name="_LoginPartial"></partial>
+            </div>
+        </nav>
+    </div>
+
+    <div class="container">
+       @RenderBody()
+    </div>
+
+    <partial name="__Footer" />
+    <script type="text/javascript" src="../lib/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="../lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/bookstore.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

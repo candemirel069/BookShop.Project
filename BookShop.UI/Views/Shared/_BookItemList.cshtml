@@ -1,0 +1,8 @@
+﻿@model IEnumerable<BookItemViewModel>
+
+
+@foreach (var item in Model)
+{
+    <partial name="_BookItem" model="item" />
+}
+

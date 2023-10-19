@@ -16,8 +16,33 @@ namespace BookShop.Admin
             builder.Services.AddDbContext<BookShopContext>(
                 options => options.UseSqlServer(constr));
 
-            builder.Services.AddIdentity<AppUser, AppRole>()
-                .AddEntityFrameworkStores<BookShopContext>();
+            builder.Services.AddIdentity<AppUser, AppRole>(options =>
+            {
+                options.Password.RequireDigit = false;
+                options.Password.RequiredLength = 1;
+                options.Password.RequiredUniqueChars = 0;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+
+            }).AddEntityFrameworkStores<BookShopContext>();
+
+            builder.Services.ConfigureApplicationCookie(options =>
+            {
+                options.LoginPath = new PathString("/Account/Login");
+                options.LogoutPath = new PathString("/Account/Logout");
+                options.AccessDeniedPath = new PathString("/Home/AccessDenied");
+
+                options.Cookie = new()
+                {
+                    Name = "IdentityCookie",
+                    HttpOnly = true,
+                    SameSite = SameSiteMode.Lax,
+                    SecurePolicy = CookieSecurePolicy.Always
+                };
+                options.SlidingExpiration = true;
+                options.ExpireTimeSpan = TimeSpan.FromDays(30);
+            });
 
             builder.Services.AddControllersWithViews();
 
@@ -44,6 +69,8 @@ namespace BookShop.Admin
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 

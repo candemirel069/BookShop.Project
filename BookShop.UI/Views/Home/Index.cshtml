@@ -1,8 +1,50 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@inject IStatsService _stat
+@{
+    ViewData["Title"] = "Index";
+    //Layout = "~/Views/Shared/_Layout_New.cshtml";
+    var data = _stat.GetStats();
 }
+<link href="../css/home.css" rel="stylesheet" />
+@*<hr />
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+
+<div style="width:800px; height:800px; background-color:#ccc; 
+background-image: url('../images/book.png'); 
+">
+
 </div>
+<hr />*@
+<div class="home-page-image home-box" style=" "></div>
+<div class="row home-section-bar">
+    <div class="col home-section home-section-book home-box">
+        <h3 class="bg-white bg-opacity-75 home-section-title">Kitaplar</h3>
+        <span class="home-section-title-end fs-4">(@data.BookCount)</span>
+    </div>
+    <div class="col home-section home-section-author home-box">
+        <h3 class="bg-white bg-opacity-75 home-section-title">Yazarlar </h3>
+        <span class="home-section-title-end  fs-4">(@data.AuthorCount)</span>
+    </div>
+    <div id="button-publisher" class="col home-section home-section-publisher home-box">
+        <h3 class="bg-white bg-opacity-75 home-section-title">Yayıncı</h3>
+        <span class="home-section-title-end  fs-4">(@data.PublisherCount)</span>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        $(function(){
+            console.log("aaa");
+            $(".home-section-publisher").click(function () {
+                window.location.href = '/publishers';
+            });
+
+            $(".home-section-author").click(function () {
+                window.location.href = '/authors';
+            });
+
+            $(".home-section-book").click(function () {
+                window.location.href = '/books';
+            });
+        });
+    </script>
+}

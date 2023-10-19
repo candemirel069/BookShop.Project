@@ -1,0 +1,19 @@
+﻿@model IEnumerable<AuthorListModel>
+@{
+    char sonHarf = ' ';
+    char harf;
+}
+@foreach (var item in Model)
+{
+    harf = item.Fullname[0];
+    if (sonHarf != harf)
+    {
+        sonHarf = harf;
+        <br />
+        <div class="display-4 text-danger"> @harf </div>
+        <hr />
+    }
+
+    <a asp-action="AuthorDetail" asp-route-id="@item.Id" class="text-dark text-decoration-none"> @item.Fullname</a>
+    <br />
+}

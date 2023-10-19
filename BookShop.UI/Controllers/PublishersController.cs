@@ -2,7 +2,7 @@
 
 namespace BookStore.WebUI.Controllers
 {
-    public class HomeController : Controller
+    public class PublishersController : Controller
     {
         public IActionResult Index()
         {

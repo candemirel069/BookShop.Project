@@ -1,0 +1,27 @@
+﻿@inject IListService lstSrv
+
+<form asp-action="Index" method="get" >
+    <div class="row">
+        <div class="col">
+            <input name="Name" class="form-control" autocomplete="off" />
+        </div>
+        <div class="col">
+            <select name="CategoryId" class="form-control" asp-items="lstSrv.GetCategoryList()">
+                <option>Please Select a Category</option>
+            </select>
+        </div>
+        <div class="col">
+            <select name="AuthorId" class="form-control" asp-items="lstSrv.GetAuthorList()">
+                <option>Please Select an Author</option>
+            </select>
+        </div>
+        <div class="col">
+            <select name="PublisherID" class="form-control" asp-items="lstSrv.GetPublisherList()">
+                <option>Please Select a Publisher</option>
+            </select>
+        </div>
+        <div class="col-1">
+            <input value="Search" type="submit" class="btn btn-secondary" />
+        </div>
+    </div>
+</form>

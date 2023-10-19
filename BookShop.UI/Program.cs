@@ -1,3 +1,8 @@
+using BookShop.Business.Services;
+using BookShop.Data.Entities;
+using BookShop.Data.Identities;
+using Microsoft.EntityFrameworkCore;
+
 namespace BookShop.UI
 {
     public class Program
@@ -9,6 +14,38 @@ namespace BookShop.UI
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
+            var constr = builder.Configuration.GetConnectionString("BookShopCon");
+            builder.Services.AddDbContext<BookShopContext>(
+                options => options.UseSqlServer(constr));
+
+            //builder.Services.AddIdentity<AppUser, AppRole>(options =>
+            //{
+            //    options.Password.RequireDigit = false;
+            //    options.Password.RequiredLength = 1;
+            //    options.Password.RequiredUniqueChars = 0;
+            //    options.Password.RequireLowercase = false;
+            //    options.Password.RequireUppercase = false;
+            //    options.Password.RequireNonAlphanumeric = false;
+
+            //}).AddEntityFrameworkStores<BookShopContext>();
+
+            //builder.Services.ConfigureApplicationCookie(options =>
+            //{
+            //    options.LoginPath = new PathString("/Account/Login");
+            //    options.LogoutPath = new PathString("/Account/Logout");
+            //    options.AccessDeniedPath = new PathString("/Home/AccessDenied");
+
+            //    options.Cookie = new()
+            //    {
+            //        Name = "IdentityCookie",
+            //        HttpOnly = true,
+            //        SameSite = SameSiteMode.Lax,
+            //        SecurePolicy = CookieSecurePolicy.Always
+            //    };
+            //    options.SlidingExpiration = true;
+            //    options.ExpireTimeSpan = TimeSpan.FromDays(30);
+            //});
+            builder.Services.AddScoped<IStatsService, StatsService>();
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -23,6 +60,8 @@ namespace BookShop.UI
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            //app.UseAuthentication();
 
             app.UseAuthorization();
 
