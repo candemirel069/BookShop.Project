@@ -1,6 +1,5 @@
-﻿using BookStore.Data.Entities;
-using BookStore.WebUI.Services;
-using BookStore.WebUI.Models;
+﻿
+using BookShop.Business.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -8,32 +7,23 @@ namespace BookStore.WebUI.Controllers;
 
 public class AuthorsController : Controller
 {
-    private readonly BookStoreContext _db;
-    private readonly IBookSearchService _service;
+    private readonly IAuthorRepository _AuthorRepository;
 
-    public AuthorsController(BookStoreContext db, IBookSearchService service)
+    public AuthorsController(IAuthorRepository authorRepository)
     {
-        _db = db;
-        _service = service;
+        _AuthorRepository = authorRepository;
     }
 
     public IActionResult Index()
     {
-        var lst = from aut in _db.Authors.Include(x=>x.Books)
-                  where aut.Books.Count() > 0
-                  orderby aut.Name
-                  select new AuthorListModel
-                  {
-                      Id = aut.Id,
-                      Fullname = aut.FullName
-                  };
+        var lst = _AuthorRepository.GetPersonListItem();
 
         return View(lst.ToList());
     }
 
-    public IActionResult AuthorDetail(int? id )
+    public IActionResult AuthorDetail(int id )
     {
-        var data=_db.Authors.Find(id);
+        var data= _AuthorRepository.Get(id);
         return View(data);
     }
 }

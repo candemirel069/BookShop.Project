@@ -7,49 +7,22 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Views\Account\**" />
-    <Compile Remove="Views\Authors\**" />
-    <Compile Remove="Views\Basket\**" />
-    <Compile Remove="Views\Books\**" />
-    <Compile Remove="Views\Publishers\**" />
     <Compile Remove="Views\Tools\**" />
-    <Content Remove="Views\Account\**" />
-    <Content Remove="Views\Authors\**" />
-    <Content Remove="Views\Basket\**" />
-    <Content Remove="Views\Books\**" />
-    <Content Remove="Views\Publishers\**" />
     <Content Remove="Views\Tools\**" />
-    <EmbeddedResource Remove="Views\Account\**" />
-    <EmbeddedResource Remove="Views\Authors\**" />
-    <EmbeddedResource Remove="Views\Basket\**" />
-    <EmbeddedResource Remove="Views\Books\**" />
-    <EmbeddedResource Remove="Views\Publishers\**" />
     <EmbeddedResource Remove="Views\Tools\**" />
-    <None Remove="Views\Account\**" />
-    <None Remove="Views\Authors\**" />
-    <None Remove="Views\Basket\**" />
-    <None Remove="Views\Books\**" />
-    <None Remove="Views\Publishers\**" />
     <None Remove="Views\Tools\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Remove="Controllers\AccountController.cs" />
-    <Compile Remove="Controllers\AuthorsController.cs" />
-    <Compile Remove="Controllers\BasketController.cs" />
-    <Compile Remove="Controllers\BooksController.cs" />
-    <Compile Remove="Controllers\PublishersController.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Remove="Views\Shared\_BookItem.cshtml" />
-    <Content Remove="Views\Shared\_BookItemList.cshtml" />
-    <Content Remove="Views\Shared\_BookStars.cshtml" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <None Include="Views\Account\Login.cshtml" />
+    <None Include="Views\Account\Register.cshtml" />
+    <None Include="Views\Authors\AuthorDetail.cshtml" />
+    <None Include="Views\Authors\Index.cshtml" />
+    <None Include="Views\Basket\Index.cshtml" />
+    <None Include="Views\Books\Index.cshtml" />
     <None Include="Views\Home\Index.cshtml" />
     <None Include="Views\Home\Privacy.cshtml" />
+    <None Include="Views\Publishers\Index.cshtml" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,23 +1,23 @@
 ﻿@inject IListService lstSrv
 
-<form asp-action="Index" method="get" >
+<form asp-action="Index" method="get">
     <div class="row">
         <div class="col">
-            <input name="Name" class="form-control" autocomplete="off" />
+            <input name="Name" class="form-control" autocomplete="off" placeholder="kitabın adı..." />
         </div>
         <div class="col">
-            <select name="CategoryId" class="form-control" asp-items="lstSrv.GetCategoryList()">
-                <option>Please Select a Category</option>
+            <select name="CategoryId" class="form-control" asp-items="lstSrv.GetSelectList<Category>()">
+                <option>kategori seçiniz</option>
             </select>
         </div>
         <div class="col">
-            <select name="AuthorId" class="form-control" asp-items="lstSrv.GetAuthorList()">
-                <option>Please Select an Author</option>
+            <select name="AuthorId" class="form-control" asp-items="lstSrv.GetPersonSelectList<Author>()">
+                <option>yazar seçiniz</option>
             </select>
         </div>
         <div class="col">
-            <select name="PublisherID" class="form-control" asp-items="lstSrv.GetPublisherList()">
-                <option>Please Select a Publisher</option>
+            <select name="PublisherID" class="form-control" asp-items="lstSrv.GetSelectList<Publisher>()">
+                <option>yayıncı seçiniz</option>
             </select>
         </div>
         <div class="col-1">

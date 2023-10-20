@@ -13,8 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookShop.UI", "BookShop.UI\
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".docs", ".docs", "{49E2CE2B-7D37-4378-8305-2D60298CB239}"
 	ProjectSection(SolutionItems) = preProject
-		readme.md = readme.md
 		readme.Idenity.txt = readme.Idenity.txt
+		readme.md = readme.md
+		Readme.Resource.md = Readme.Resource.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".scripts", ".scripts", "{96F8C430-180E-4D6A-B5CF-87327AA106F0}"

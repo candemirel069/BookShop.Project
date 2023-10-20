@@ -8,5 +8,6 @@ namespace BookShop.Business.Repositories
         BookListItemViewModel? GetBook(int id);
         BookDetailedViewModel? GetBookDetailed(int id);
         List<BookListItemViewModel>? Search(BookSearchModel? model);
+        List<BookDetailedViewModel>? SearchWithDetailed(BookSearchModel? model);
     }
 }

@@ -1,33 +1,26 @@
-﻿using BookStore.Data.Entities;
-using BookStore.WebUI.Services;
-using BookStore.WebUI.Models;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
+using BookShop.Business.Repositories;
+using BookShop.Business.Models;
+using BookShop.UI.Models;
 
 namespace BookStore.WebUI.Controllers
 {
     public class BooksController : Controller
     {
-        private readonly ILogger<BooksController> _logger;
-        private readonly IBookSearchService _bookService;
-        private readonly BookStoreContext _context;
+        private readonly IBookRepository _bookService;
 
-        public BooksController(
-            ILogger<BooksController> logger, 
-            IBookSearchService service, 
-            BookStoreContext context)
+        public BooksController(IBookRepository bookService)
         {
-            _logger = logger;
-            _bookService = service;
-            _context = context;
+            _bookService = bookService;
         }
 
         public IActionResult Index(BookSearchModel? model)
         {
             model = model?? new BookSearchModel();
 
-            var data = _bookService.Search(model);
+            var data = _bookService.SearchWithDetailed(model);
             return View(data);
         }
         public IActionResult Privacy()

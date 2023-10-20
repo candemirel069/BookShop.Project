@@ -1,0 +1,68 @@
+﻿
+.home-page-image {
+    width: 100%;
+    height: 400px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-image: url(../images/home/home-page-image.jpg)
+}
+
+.home-section-book {
+    background-image: url('../images/home/book2.jpg');
+}
+
+.home-section-publisher {
+    background-image: url('../images/home/copmpany.jpg');
+}
+
+.home-section-author {
+    background-image: url('../images/home/author.jpg');
+}
+
+.home-section-bar {
+    margin-top: 20px;
+}
+
+.home-section {
+    background-size: cover;
+    background-position: center;
+    height: 200px;
+    padding: 0;
+    margin-left: 20px;
+    position: relative;
+}
+
+    .home-section:first-child {
+        margin-left: 10px;
+    }
+
+    .home-section:last-child {
+        margin-right: 10px;
+    }
+
+.home-section-title {
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 10px;
+    margin: 0
+}
+
+.home-section-title-end {
+    border-bottom-right-radius: 10px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: 10px;
+    margin: 0
+}
+
+.home-box {
+    border: 1px #999 solid;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    cursor:pointer
+}

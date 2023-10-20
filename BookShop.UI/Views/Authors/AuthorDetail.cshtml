@@ -6,4 +6,4 @@
 
 <h1>@Model.FullName</h1>
 
-<partial name="_BookItemList" model="@service.Search(new BookSearchModel{ AuthorId=Model.Id})" />
+<partial name="_BookItemList" model="@service.SearchWithDetailed(new BookSearchModel{ AuthorId=Model.Id } )" />

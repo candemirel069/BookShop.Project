@@ -29,7 +29,7 @@ namespace BookShop.Business.Repositories
                          select new PersonListItemModel
                          {
                              Id = item.Id,
-                             Fullname = item.FullName
+                             Fullname = item.FullName.Trim(),
                          };
             return result.ToList();
         }

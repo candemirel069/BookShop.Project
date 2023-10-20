@@ -1,7 +1,7 @@
-﻿using BookStore.Data.Entities;
-using BookStore.Data.Entities.Identities;
-using BookStore.WebUI.Models;
-using BookStore.WebUI.Services;
+﻿
+using BookShop.Business.Services;
+using BookShop.Data.Entities;
+using BookShop.Data.Identities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,9 +11,9 @@ namespace BookStore.WebUI.Controllers
     {
         private IBasketService _basketService;
         private SignInManager<AppUser> _SignInManager;
-        private BookStoreContext _dbContext;
+        private BookShopContext _dbContext;
 
-        public BasketController(IBasketService basketService, SignInManager<AppUser> signInManager, BookStoreContext dbContext)
+        public BasketController(IBasketService basketService, SignInManager<AppUser> signInManager, BookShopContext dbContext)
         {
             _basketService = basketService;
             _SignInManager = signInManager;

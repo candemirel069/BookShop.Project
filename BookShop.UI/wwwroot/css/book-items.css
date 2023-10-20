@@ -1,0 +1,14 @@
+﻿.book-item-name {
+    text-decoration: none;
+}
+
+.book-item-price-back {
+    background-color: #fff
+}
+
+.book-item-price-pos {
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-bottom-left-radius: 15px
+}

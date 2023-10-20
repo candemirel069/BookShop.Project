@@ -43,11 +43,11 @@
                                                 </div>
                                                 <div class="d-flex flex-row align-items-center">
                                                     <div style="width: 120px;">
-                                                        
+
                                                         <div class="d-flex flex-row">
-                                                @*<button class="btn btn-link px-2"onclick="this.parentNode.querySelector('input[type=number]').stepDown()"> *@                                                                
+                                                            @*<button class="btn btn-link px-2"onclick="this.parentNode.querySelector('input[type=number]').stepDown()"> *@
                                                             <a class="btn btn-link px-2" asp-action="SetQuantity" asp-controller="Basket"
-                                                                        asp-route-id="@item.Id" asp-route-quantity="@(item.Quatitiy-1)">
+                                                               asp-route-id="@item.Id" asp-route-quantity="@(item.Quatitiy-1)">
 
                                                                 <i class="fas fa-minus"></i>
                                                             </a>
@@ -56,18 +56,18 @@
                                                                    class="form-control form-control-sm" style="width: 50px;" />
 
                                                             @* <button class="btn btn-link px-2" onclick="this.parentNode.querySelector('input[type=number]').stepUp()"> *@
-                                                          <a class="btn btn-link px-2" asp-action="SetQuantity" asp-controller="Basket"
-                                                                        asp-route-id="@item.Id" asp-route-quantity="@(item.Quatitiy+1)">
+                                                            <a class="btn btn-link px-2" asp-action="SetQuantity" asp-controller="Basket"
+                                                               asp-route-id="@item.Id" asp-route-quantity="@(item.Quatitiy+1)">
                                                                 <i class="fas fa-plus"></i>
                                                             </a>
                                                         </div>
                                                     </div>
                                                     <div style="width: 90px;">
-                                                        @if (@item.DiscountRate != null)
+                                                        @if (@item.ProductPrice.DiscountRate != null)
                                                         {
-                                                            <div class="mb-0 text-decoration-line-through">@item.Price.Value.ToString("N2")</div>
+                                                            <div class="mb-0 text-decoration-line-through">@item.ProductPrice.Price.Value.ToString("N2")</div>
                                                         }
-                                                        <div class="mb-0 fw-bold">@item.FinalPrice.Value.ToString("N2")</div>
+                                                        <div class="mb-0 fw-bold">@item.ProductPrice.FinalPrice.Value.ToString("N2")</div>
                                                     </div>
                                                     <a asp-controller="basket" asp-action="RemoveItem" asp-route-id="@item.Id"><i class=" text-danger fas fa-trash-alt"></i></a>
                                                 </div>
@@ -75,10 +75,6 @@
                                         </div>
                                     </div>
                                 }
-
-
-              
-
                             </div>
                             <div class="col-lg-5">
 
@@ -146,25 +142,19 @@
                                                     </div>
                                                 </div>
                                             </div>
-
                                         </form>
-
-
 
                                         <button type="button" class="btn btn-dark btn-block btn-lg text-white">
                                             <div class="d-flex justify-content-between">
-                                                
+
                                                 <span>Siparişi Tamamla</span>
                                             </div>
                                         </button>
 
                                     </div>
                                 </div>
-
                             </div>
-
                         </div>
-
                     </div>
                 </div>
             </div>

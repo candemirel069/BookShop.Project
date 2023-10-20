@@ -1,11 +1,11 @@
-﻿@model IEnumerable<AuthorListModel>
+﻿@model IEnumerable<PersonListItemModel>
 @{
     char sonHarf = ' ';
     char harf;
 }
 @foreach (var item in Model)
 {
-    harf = item.Fullname[0];
+    harf = item.Fullname.ToUpper()[0];
     if (sonHarf != harf)
     {
         sonHarf = harf;
