@@ -1,0 +1,38 @@
+﻿
+@model Campaign
+@inject IListService lstSrv
+<h1>Campaign</h1>
+<h3>@Model.Name</h3>
+
+<table class="table">
+    @foreach (var item in Model.Books)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                <a asp-action="RemoveBook" asp-route-Id="@Model.Id" asp-route-BookId="@item.Id" class="btn btn-secondary btn-sm"> remove</a>
+            </td>
+        </tr>
+    }
+</table>
+<br />
+<br />
+
+<form asp-action="AddBook" asp-route-id="@Model.Id">
+    <div class="row">
+        <div class="col-1">
+            <label>Name</label>
+        </div>
+        <div class="col">
+            <select name="BookId" class="form-control" asp-items="lstSrv.GetSelectList<Book>()">
+                <option>Please Select</option>
+            </select>
+        </div>
+        <div class="col-2">
+            <input type="submit" value="Add Book" class="btn btn-primary btn-sm" />
+        </div>
+    </div>
+    
+</form>
