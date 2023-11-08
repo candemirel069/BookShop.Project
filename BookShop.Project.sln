@@ -13,6 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookShop.UI", "BookShop.UI\
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".docs", ".docs", "{49E2CE2B-7D37-4378-8305-2D60298CB239}"
 	ProjectSection(SolutionItems) = preProject
+		Book Store Free Website Template - Free-CSS.com.zip = Book Store Free Website Template - Free-CSS.com.zip
 		readme.Idenity.txt = readme.Idenity.txt
 		readme.md = readme.md
 		Readme.Resource.md = Readme.Resource.md
@@ -26,7 +27,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".scripts", ".scripts", "{96
 		scripts\bookstore-data-full.sql = scripts\bookstore-data-full.sql
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookShop.UI2", "BookShop.UI2\BookShop.UI2.csproj", "{7826D224-2477-491C-B1F0-6FE1A305E4B0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookShop.UI2", "BookShop.UI2\BookShop.UI2.csproj", "{7826D224-2477-491C-B1F0-6FE1A305E4B0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

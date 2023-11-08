@@ -13,7 +13,7 @@ namespace BookShop.Business.Repositories
         public List<AuthorListItemModel> GetDetailedList()
         {
             var result = from item in _dbContext.Authors.Include(x => x.Books)
-                         orderby item.Name, item.MiddleName, item.Surname
+                         orderby item.FullName
                          select new AuthorListItemModel
                          {
                              Id = item.Id,

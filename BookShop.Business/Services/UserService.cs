@@ -20,6 +20,7 @@ namespace BookShop.Business.Services
             _httpContext = httpContext;
             _userManager = userManager;
         }
+
         public int GetUserId()
         {
             if (_httpContext?.HttpContext?.User != null)

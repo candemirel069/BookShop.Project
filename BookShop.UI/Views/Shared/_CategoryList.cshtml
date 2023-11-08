@@ -1,5 +1,4 @@
-﻿
-@using BookShop.Business.Repositories;
+﻿@using BookShop.Business.Repositories;
 @model int?
 @inject ICategoryRepository _categories
 <div class="category-list-container">
@@ -12,7 +11,7 @@
             {
                 var classStr = "nav-link";
                 if (Model.HasValue && item.Id == Model.Value){
-                    classStr += "  bg-info text-dark";
+                    classStr += "  bg-dark text-white";
                 }
                 <li class="nav-item "><a class="@classStr" asp-route-categoryId="@item.Id">@item.Name</a></li>
             }

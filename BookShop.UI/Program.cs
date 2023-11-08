@@ -27,7 +27,6 @@ namespace BookShop.UI
                 options.Password.RequireLowercase = false;
                 options.Password.RequireUppercase = false;
                 options.Password.RequireNonAlphanumeric = false;
-
             }).AddEntityFrameworkStores<BookShopContext>();
 
             builder.Services.ConfigureApplicationCookie(options =>

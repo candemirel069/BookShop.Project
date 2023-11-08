@@ -30,6 +30,7 @@ namespace BookShop.Business.Models
                     return Price.Value * (DiscountRate.Value / 100m); /// 100m dedik çünkü DECİMAL !!!!!
             }
         }
-        public decimal? FinalPrice => (DiscountAmount == 0) ? Price : Price - DiscountAmount;
+        //public decimal? FinalPrice => (DiscountAmount == 0) ? Price : Price - DiscountAmount;
+        public decimal? FinalPrice => Price - DiscountAmount;
     }
 }

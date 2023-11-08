@@ -1,0 +1,13 @@
+﻿@using BookShop.Business.Repositories;
+@inject ICategoryRepository _category;
+
+<div class="templatemo_content_left_section">
+    <h2>Kategoriler</h2>
+    <ul>
+        @foreach (var item in _category.GetActiveCategory())
+        {
+            <li><a href="#">@item.Name</a></li>
+        }
+   
+    </ul>
+</div>

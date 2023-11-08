@@ -1,5 +1,4 @@
-﻿
-@using Microsoft.AspNetCore.Identity
+﻿@using Microsoft.AspNetCore.Identity
 @* @inject IBasketService _bastket;
 @inject IUserService _userService; *@
 @inject SignInManager<AppUser> SignInManager
@@ -8,11 +7,14 @@
 
 
 <ul class="navbar-nav align-content-end">
-    
+
     @if (SignInManager.IsSignedIn(User))
     {
         <li class="nav-item">
-            <a asp-controller="basket" asp-action="Index" class="nav-link "><i class="fa-solid fa-cart-shopping text-primary me-2"></i><b id="basket-item-count">0</b>  ürün </a>
+            <a asp-controller="basket" asp-action="Index" class="nav-link ">
+                <i class="fa-solid fa-cart-shopping text-primary me-2"></i>
+                <b id="basket-item-count">0</b>  ürün
+            </a>
         </li>
         <li class="nav-item">
             @* <span class="nav-link text-light">Kullanıcı @UserManager.GetUserName(User)</span> *@
@@ -20,7 +22,9 @@
         </li>
         <li class="nav-item bg-light">
             <form id="logoutForm" class="form-inline" asp-controller="account" asp-action="logout" asp-route-returnUrl="@Url.Action("Index", "Home")">
-                <button id="logout" type="submit" class="nav-link btn btn-link  border-1"> <i class="fa-solid fa-right-from-bracket text-danger me-2"></i>Logout</button>
+                <button id="logout" type="submit" class="nav-link btn btn-link  border-1">
+                    <i class="fa-solid fa-right-from-bracket text-danger me-2"></i>Logout
+                </button>
             </form>
         </li>
     }
@@ -29,12 +33,14 @@
         <li class="nav-item">
             <a class="nav-link text-dark" id="register" asp-controller="account" asp-action="register">
                 <i class="fa fa-user-plus text-success" aria-hidden="true"></i>
-                Üye Ol</a>
+                Üye Ol
+            </a>
         </li>
         <li class="nav-item">
             <a class="nav-link text-dark" id="login" asp-controller="account" asp-action="login">
                 <i class="fa fa-sign-in text-success" aria-hidden="true"></i>
-                Üye girişi</a>
+                Üye girişi
+            </a>
         </li>
     }
 </ul>

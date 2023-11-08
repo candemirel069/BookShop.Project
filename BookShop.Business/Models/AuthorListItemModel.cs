@@ -10,6 +10,7 @@ namespace BookShop.Business.Models
     public  class PersonListItemModel
     {
         public int Id { get; set; }
+        
         [Display(Name = "Adı Soyadı")]
         public string Fullname { get; set; } = "";
     }

@@ -4,12 +4,14 @@
         url: "/Basket/ItemCount",
         success: function (data) {
             $("#basket-item-count").text(data);
+           // alert("seppette " + data + " ürün var");
         }
     });
 }
 
 $(function () {
 
+    
     GetBasketItemCount();
 
     $(".add-basket").click(

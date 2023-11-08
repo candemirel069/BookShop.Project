@@ -23,7 +23,6 @@ namespace BookShop.Business.Services
             stats.BookCount = _context.Books.Count();
             stats.PublisherCount = _context.Publishers.Count();
             stats.AuthorCount = _context.Authors.Count();
-
             return stats;
         }
     }

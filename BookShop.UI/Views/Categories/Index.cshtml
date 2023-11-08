@@ -6,6 +6,7 @@
         <partial name="_CategoryList" model="Model.Id"></partial>
     </div>
     <div class="col-9">
+        <h1>@Model.Name</h1>
         <partial name="_BookItemList" model="@service.SearchWithDetailed(new BookSearchModel{ CategoryId=Model.Id } )" />
     </div>
 </div>

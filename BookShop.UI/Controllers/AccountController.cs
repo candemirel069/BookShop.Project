@@ -11,7 +11,6 @@ namespace BookStore.WebUI.Controllers
         private readonly UserManager<AppUser> _userManager;
         private readonly RoleManager<AppRole> _roleManager;
         private readonly SignInManager<AppUser> _signInManager;
-        
 
         public AccountController(UserManager<AppUser> userManager, RoleManager<AppRole> roleManager, SignInManager<AppUser> signInManager)
         {
@@ -28,7 +27,6 @@ namespace BookStore.WebUI.Controllers
         [HttpPost]
         public async Task<IActionResult> RegisterAsync(RegisterUserModel model)
         {
-            
             var newUser = new AppUser
             {
                 FirstName = model.FirstName,
@@ -57,7 +55,6 @@ namespace BookStore.WebUI.Controllers
             }
             return View(model);
         }
-
 
         public IActionResult Login()
         {

@@ -14,13 +14,13 @@ namespace BookShop.Business.Services
     public class BasketService : IBasketService
     {
         private readonly IUserService _userService;
-        
+
         private readonly BookShopContext _dbContext;
 
         public BasketService(IUserService userService, BookShopContext dbContext)
         {
             _userService = userService;
-            
+
             _dbContext = dbContext;
         }
 
@@ -33,8 +33,11 @@ namespace BookShop.Business.Services
             if (bookIds == null)
                 return result;
 
-            var books = from basket in _dbContext.BasketItems.Include(x => x.Book)
-                 .Include(it => it.Book.Author).Include(x => x.Book.Campaign).Include(it => it.Book.Translator)
+            var books = from basket in _dbContext.BasketItems
+                         .Include(x => x.Book)
+                         .Include(it => it.Book.Author)
+                         .Include(x => x.Book.Campaign)
+                         .Include(it => it.Book.Translator)
                         where
                         basket.AppUserId == _userService.GetUserId()
                         orderby basket.Book.Name
