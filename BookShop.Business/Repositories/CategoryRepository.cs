@@ -1,4 +1,5 @@
-﻿using BookShop.Data.Entities;
+﻿using BookShop.Business.Models;
+using BookShop.Data.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace BookShop.Business.Repositories
@@ -11,7 +12,19 @@ namespace BookShop.Business.Repositories
 
         public override List<Category> GetAll()
         {
-            return _dbContext.Set<Category>().OrderBy(x=>x.Name).ToList();
+            return _dbContext.Set<Category>().OrderBy(x => x.Name).ToList();
+        }
+         
+        public List<CategoryViewModel> GetActiveCategory()
+        {
+            return (from cat in _dbContext.Categories.Include(x=>x.Books)
+                   where cat.Books.Count>0
+                   orderby cat.Name
+                   select new CategoryViewModel
+                   {
+                       Id = cat.Id,
+                       Name= cat.Name
+                   }).ToList();                   
         }
 
         public override async Task<List<Category>> GetAllAsync()

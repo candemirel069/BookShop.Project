@@ -6,37 +6,31 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using BookShop.Data.Entities;
+using BookShop.Business.Repositories;
 
 namespace BookShop.Admin.Controllers
 {
     public class TranslatorsController : Controller
     {
         private readonly BookShopContext _context;
+        private readonly ITranslatorRepository _translatorRepository;
 
-        public TranslatorsController(BookShopContext context)
+        public TranslatorsController(BookShopContext context, ITranslatorRepository translatorRepository)
         {
             _context = context;
+            _translatorRepository = translatorRepository;
         }
 
-        // GET: Translators
         public async Task<IActionResult> Index()
         {
-              return _context.Translators != null ? 
-                          View(await _context.Translators.ToListAsync()) :
-                          Problem("Entity set 'BookShopContext.Translators'  is null.");
+            return View(_translatorRepository.GetList());
         }
 
-       
-
-        // GET: Translators/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Translators/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("EMail,Name,MiddleName,Surname,Id")] Translator translator)
@@ -50,7 +44,6 @@ namespace BookShop.Admin.Controllers
             return View(translator);
         }
 
-        // GET: Translators/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Translators == null)
@@ -66,9 +59,6 @@ namespace BookShop.Admin.Controllers
             return View(translator);
         }
 
-        // POST: Translators/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("EMail,Name,MiddleName,Surname,Id")] Translator translator)
@@ -101,7 +91,6 @@ namespace BookShop.Admin.Controllers
             return View(translator);
         }
 
-        // GET: Translators/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Translators == null)
@@ -119,7 +108,6 @@ namespace BookShop.Admin.Controllers
             return View(translator);
         }
 
-        // POST: Translators/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
@@ -133,14 +121,14 @@ namespace BookShop.Admin.Controllers
             {
                 _context.Translators.Remove(translator);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool TranslatorExists(int id)
         {
-          return (_context.Translators?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.Translators?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

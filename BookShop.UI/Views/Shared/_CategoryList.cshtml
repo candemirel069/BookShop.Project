@@ -1,0 +1,21 @@
+﻿
+@using BookShop.Business.Repositories;
+@model int?
+@inject ICategoryRepository _categories
+<div class="category-list-container">
+
+    <div class="category-list-header">
+    </div>
+    <div class="category-list-content">
+        <ul class="nav flex-column ">
+            @foreach (var item in _categories.GetActiveCategory())
+            {
+                var classStr = "nav-link";
+                if (Model.HasValue && item.Id == Model.Value){
+                    classStr += "  bg-info text-dark";
+                }
+                <li class="nav-item "><a class="@classStr" asp-route-categoryId="@item.Id">@item.Name</a></li>
+            }
+        </ul>
+    </div>
+</div>

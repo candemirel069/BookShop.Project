@@ -6,27 +6,26 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using BookShop.Data.Entities;
+using BookShop.Business.Repositories;
 
 namespace BookShop.Admin.Controllers
 {
     public class AuthorsController : Controller
     {
         private readonly BookShopContext _context;
+        private readonly IAuthorRepository _authorRepository;
 
-        public AuthorsController(BookShopContext context)
+        public AuthorsController(BookShopContext context, IAuthorRepository authorRepository)
         {
             _context = context;
+            _authorRepository = authorRepository;
         }
 
-        // GET: Authors
         public async Task<IActionResult> Index()
         {
-              return _context.Authors != null ? 
-                          View(await _context.Authors.ToListAsync()) :
-                          Problem("Entity set 'BookShopContext.Authors'  is null.");
+            return View(_authorRepository.GetList());
         }
 
-        // GET: Authors/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Authors == null)
@@ -44,15 +43,11 @@ namespace BookShop.Admin.Controllers
             return View(author);
         }
 
-        // GET: Authors/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Authors/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("EMail,Name,MiddleName,Surname,Id")] Author author)
@@ -66,7 +61,6 @@ namespace BookShop.Admin.Controllers
             return View(author);
         }
 
-        // GET: Authors/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Authors == null)
@@ -82,9 +76,6 @@ namespace BookShop.Admin.Controllers
             return View(author);
         }
 
-        // POST: Authors/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("EMail,Name,MiddleName,Surname,Id")] Author author)
@@ -117,7 +108,6 @@ namespace BookShop.Admin.Controllers
             return View(author);
         }
 
-        // GET: Authors/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Authors == null)
@@ -135,7 +125,6 @@ namespace BookShop.Admin.Controllers
             return View(author);
         }
 
-        // POST: Authors/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
@@ -149,14 +138,14 @@ namespace BookShop.Admin.Controllers
             {
                 _context.Authors.Remove(author);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool AuthorExists(int id)
         {
-          return (_context.Authors?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.Authors?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

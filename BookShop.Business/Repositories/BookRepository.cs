@@ -80,7 +80,7 @@ namespace BookShop.Business.Repositories
                              ImageUrl = MyApplicationConfig.ImageBaseUrl + bk.ImageName,
                              ProductPrice = new ProductPrice(bk.Price, bk.Campaign == null ? 0 : bk.Campaign.DiscountRate)
                          };
-            return result.Take(5).ToList();
+            return result.Take(10).ToList();
         }
         public List<BookDetailedViewModel>? SearchWithDetailed(BookSearchModel? model)
         {

@@ -11,4 +11,4 @@ https://mdbootstrap.com/docs/standard/extended/login/
 https://mdbootstrap.com/docs/standard/extended/shopping-carts/
 
 ### Footer
-https://mdbootstrap.com/docs/standard/navig
+https://mdbootstrap.com/docs/b4/jquery/navigation/footer/

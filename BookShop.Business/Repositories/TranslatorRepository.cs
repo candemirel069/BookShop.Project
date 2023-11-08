@@ -33,6 +33,18 @@ namespace BookShop.Business.Repositories
                          };
             return result.ToList();
         }
+        public List<TranslatorListItemModel> GetList()
+        {
+            var result = from item in _dbContext.Translators.Include(x=>x.Books)
+                         orderby item.Name, item.MiddleName, item.Surname
+                         select new TranslatorListItemModel
+                         {
+                             Id = item.Id,
+                             Fullname = item.FullName,
+                             BookCount= item.Books.Count(),
+                         };
+            return result.ToList();
+        }
     }
 
 }

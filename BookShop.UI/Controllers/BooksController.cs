@@ -9,20 +9,16 @@ namespace BookStore.WebUI.Controllers
 {
     public class BooksController : Controller
     {
-        private readonly IBookRepository _bookService;
+        private readonly IBookRepository _bookRepository;
+        private readonly ICategoryRepository _categoryRepository;
 
-        public BooksController(IBookRepository bookService)
+        public BooksController(IBookRepository bookRepository, ICategoryRepository categoryRepository)
         {
-            _bookService = bookService;
+            _bookRepository = bookRepository;
+            _categoryRepository = categoryRepository;
         }
 
-        public IActionResult Index(BookSearchModel? model)
-        {
-            model = model?? new BookSearchModel();
-
-            var data = _bookService.SearchWithDetailed(model);
-            return View(data);
-        }
+        
         public IActionResult Privacy()
         {
             return View();
