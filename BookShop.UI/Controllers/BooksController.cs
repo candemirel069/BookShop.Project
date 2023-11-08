@@ -18,7 +18,14 @@ namespace BookStore.WebUI.Controllers
             _categoryRepository = categoryRepository;
         }
 
-        
+        public IActionResult Index(BookSearchModel? model)
+        {
+            model = model ?? new BookSearchModel();
+
+            var data = _bookRepository.SearchWithDetailed(model);
+            return View(data);
+        }
+
         public IActionResult Privacy()
         {
             return View();

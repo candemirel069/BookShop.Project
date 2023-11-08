@@ -8,7 +8,7 @@ namespace BookShop.Admin.Controllers
 {
     public class BooksController : Controller
     {
-        //        private readonly BookShopContext _context; // REPOSİTORY PATTERN KULLANIRKEN "HİÇ BİR ZAMAN" DOĞRUDAN DB/CONTEXT ERİŞİMİ OLMAZ
+        //private readonly BookShopContext _context; // REPOSİTORY PATTERN KULLANIRKEN "HİÇ BİR ZAMAN" DOĞRUDAN DB/CONTEXT ERİŞİMİ OLMAZ
         private readonly IBookRepository _bookRepository;
         private readonly IListService _listService;
 

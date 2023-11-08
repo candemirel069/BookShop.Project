@@ -40,8 +40,6 @@ public partial class BookShopContext
             new Author { Id = 8, Name = "Oğuz", MiddleName = "", Surname = "Atay", EMail = "oa@email.com" });
     }
 
-  
-
     private static void SeedCities(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<City>().HasData(

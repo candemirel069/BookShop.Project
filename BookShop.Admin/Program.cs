@@ -47,15 +47,13 @@ namespace BookShop.Admin
             builder.Services.AddControllersWithViews();
 
             builder.Services.AddScoped<IListService, ListServices>();
-
             builder.Services.AddScoped<IBookRepository, BookRepository>();
             builder.Services.AddScoped<IAuthorRepository, AuthorRepository>();
             builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
             builder.Services.AddScoped<ITranslatorRepository, TranslatorRepository>();
             builder.Services.AddScoped<IPublisherRepository, PublisherRepository>();
-            
 
-        var app = builder.Build();
+            var app = builder.Build();
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())

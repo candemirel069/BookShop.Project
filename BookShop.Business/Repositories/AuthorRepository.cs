@@ -9,6 +9,7 @@ namespace BookShop.Business.Repositories
         public AuthorRepository(BookShopContext context) : base(context)
         {
         }
+
         public List<AuthorListItemModel> GetDetailedList()
         {
             var result = from item in _dbContext.Authors.Include(x => x.Books)
